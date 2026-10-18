@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sitech.consulting/sitemap.xml
