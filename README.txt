@@ -56,8 +56,8 @@ EDITING TEXT
 PRICES BEHIND AN ACCESS CODE (this branch)
   Every price is replaced by a "Show price" chip. Clicking a chip, or "Enter access
   code" on the pricing page, opens a dialog for the 5-digit code. With the right code
-  all prices on all pages are shown (remembered in the browser until "Hide prices" in
-  the footer is clicked). The amounts are stored encrypted in the HTML and the code
+  all prices on that page are shown. Nothing is remembered: every page load or refresh
+  asks for the code again. The amounts are stored encrypted in the HTML and the code
   itself is not in the files; the code hash is on <main data-pc>. This is a light gate
   for casual visitors, not strong security: a 5-digit code can be guessed by trying all
   100,000 combinations. For real protection serve prices only after a login.

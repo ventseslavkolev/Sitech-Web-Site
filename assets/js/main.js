@@ -103,15 +103,14 @@
 
 /* ---- Prices behind a 5-digit access code -------------------------------------------
    Every price is stored encrypted in a <button class="price locked" data-c="..."> chip.
-   The code is never stored in the page; its SHA-256 hash sits on <main data-pc>. A valid
-   code is kept in localStorage so all pages show prices until "Hide prices" is clicked. */
+   The code is never stored in the page; its SHA-256 hash sits on <main data-pc>. The code
+   is asked for on every page load: nothing is remembered between loads or pages. */
 (function () {
   'use strict';
   var main = document.getElementById('main');
   if (!main || !main.dataset.pc) { return; }
   var chips = Array.prototype.slice.call(document.querySelectorAll('.price.locked'));
   var page = (location.pathname.split('/').pop() || 'index.html');
-  var STORE = 'snPriceCode';
 
   function sha256(text) {
     var data = new TextEncoder().encode(text);
@@ -136,8 +135,6 @@
       });
     })).then(function () {
       document.documentElement.classList.add('prices-unlocked');
-      var hide = document.querySelector('.price-hide');
-      if (hide) { hide.hidden = false; }
     });
   }
 
@@ -159,7 +156,6 @@
     var code = input.value.trim();
     verify(code).then(function (ok) {
       if (!ok) { err.textContent = 'This code is not valid. Check the digits or ask us for a code.'; input.select(); return; }
-      try { localStorage.setItem(STORE, code); } catch (_) {}
       err.textContent = '';
       dlg.close();
       reveal(code);
@@ -171,20 +167,4 @@
     if (t) { e.preventDefault(); open(); }
   });
 
-  // footer link to hide prices again
-  var legal = document.querySelector('.footer .legal');
-  if (legal) {
-    var hideWrap = document.createElement('span');
-    hideWrap.className = 'price-hide'; hideWrap.hidden = true;
-    hideWrap.innerHTML = '<a href="#" class="price-hide-link">Hide prices</a>';
-    legal.appendChild(hideWrap);
-    hideWrap.querySelector('a').addEventListener('click', function (e) { e.preventDefault(); try { localStorage.removeItem(STORE); } catch (_) {} location.reload(); });
-  }
-
-  // already unlocked on an earlier page?
-  var saved = null;
-  try { saved = localStorage.getItem(STORE); } catch (_) {}
-  if (saved && window.crypto && crypto.subtle) {
-    verify(saved).then(function (ok) { if (ok) { reveal(saved); } else { try { localStorage.removeItem(STORE); } catch (_) {} } });
-  }
 })();
