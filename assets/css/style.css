@@ -407,3 +407,21 @@ form.contact .note{font-size:.875rem;color:var(--ink-2)}
 .two-col-text p{break-inside:avoid;margin-bottom:1em}
 @media (max-width:760px){.two-col-text{columns:1}}
 @media print{.topbar,.menu-toggle,.footer .cols,.cta-band{display:none}}
+
+/* ---------- prices behind an access code ---------- */
+.price.locked{display:inline-flex;align-items:center;gap:.4em;padding:.2em .6em .2em .5em;border:1px dashed var(--ink-3);border-radius:3px;background:var(--paper);color:var(--ink-2);font:600 .82em/1.2 var(--font-body);cursor:pointer;vertical-align:baseline;white-space:nowrap}
+.price.locked::before{content:"";width:.8em;height:.95em;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 20'%3E%3Cpath d='M4 8V6a4 4 0 0 1 8 0v2h1.5A1.5 1.5 0 0 1 15 9.5v8A1.5 1.5 0 0 1 13.5 19h-11A1.5 1.5 0 0 1 1 17.5v-8A1.5 1.5 0 0 1 2.5 8H4zm2 0h4V6a2 2 0 0 0-4 0v2z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 20'%3E%3Cpath d='M4 8V6a4 4 0 0 1 8 0v2h1.5A1.5 1.5 0 0 1 15 9.5v8A1.5 1.5 0 0 1 13.5 19h-11A1.5 1.5 0 0 1 1 17.5v-8A1.5 1.5 0 0 1 2.5 8H4zm2 0h4V6a2 2 0 0 0-4 0v2z'/%3E%3C/svg%3E") center/contain no-repeat}
+.price.locked:hover{border-color:var(--ink);color:var(--ink)}
+.band-yellow .price.locked{background:rgba(255,255,255,.55);border-color:var(--ink-2)}
+.price.unlocked{font-weight:600}
+td .price.unlocked{font-weight:500}
+dialog.price-dialog{border:0;border-radius:var(--radius);padding:0;max-width:min(92vw,440px);width:100%;background:var(--paper);color:var(--ink);box-shadow:0 30px 60px -30px rgba(31,32,28,.5)}
+dialog.price-dialog::backdrop{background:rgba(31,32,28,.55)}
+.price-form{display:grid;gap:1rem;padding:1.5rem}
+.price-form h3{font:600 1.375rem/1.2 var(--font-display)}
+.price-form p{color:var(--ink-2);font-size:.9375rem}
+.price-form label{display:grid;gap:.35rem;font-size:.9375rem;font-weight:500}
+.price-form input{font:600 1.5rem/1.2 var(--font-display);letter-spacing:.25em;padding:.5rem .8rem;border:1.5px solid var(--line);border-radius:var(--radius);width:100%;background:var(--bg);color:var(--ink)}
+.price-form input:focus{border-color:var(--ink);outline:none}
+.price-error{min-height:1.2em;color:var(--signal);font-size:.9rem}
+.price-hide{margin-left:auto}

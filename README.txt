@@ -50,16 +50,23 @@ IMAGES
 EDITING TEXT
   Each page is a plain HTML file. The header and footer are repeated in every page;
   change them in all twelve files (search and replace) to keep them identical.
-  Specifications follow the October 2026 company presentation. Prices are the
-  presentation's list prices raised by 60 % (18 Oct 2026): sensor EUR 80, infrared EUR 112,
-  gateways EUR 512 / 560 / 592, software EUR 40 per gateway per month, Demo Set EUR 880.
+  Specifications follow the October 2026 company presentation.
   Photos, renders and screenshots open full-size in a lightbox when clicked.
+
+PRICES BEHIND AN ACCESS CODE (this branch)
+  Every price is replaced by a "Show price" chip. Clicking a chip, or "Enter access
+  code" on the pricing page, opens a dialog for the 5-digit code. With the right code
+  all prices on all pages are shown (remembered in the browser until "Hide prices" in
+  the footer is clicked). The amounts are stored encrypted in the HTML and the code
+  itself is not in the files; the code hash is on <main data-pc>. This is a light gate
+  for casual visitors, not strong security: a 5-digit code can be guessed by trying all
+  100,000 combinations. For real protection serve prices only after a login.
+  Changing the code requires regenerating the pages (ask for a rebuild with a new code).
+  The pages need HTTPS (or a local file) for the code check to work.
 
 POINTS TO CONFIRM
   - Phone number: the site uses +359 888 920 108 (presentation). The old contact page
     showed +359 884 87 41 14.
-  - Prices are shown publicly (pricing.html and product pages). Remove or adjust if
-    prices should only be quoted on request.
   - The tower reference is described only as "timber lattice tower, 62 sensors": no
     customer name and no location, at the owner's request (18 Oct 2026).
   - Support hours are given as Mon-Fri 9-18 CET as in the presentation.
